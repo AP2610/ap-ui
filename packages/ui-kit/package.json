@@ -1,0 +1,26 @@
+{
+  "name": "ui-kit",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsup && tailwindcss -i src/styles/globals.css src/components/**/*.css -o dist/styles.css",
+    "dev": "concurrently \"tsup --watch\" \"tailwindcss -i src/styles/globals.css src/components/**/*.css -o dist/styles.css --watch\""
+  },
+  "devDependencies": {
+    "@ap/tailwind-preset": "0.1.0",
+    "@ap/typescript-config": "0.1.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "jest": "^30.0.4",
+    "tailwindcss": "^4",
+    "typescript": "^5.9.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

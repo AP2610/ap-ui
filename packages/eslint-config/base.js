@@ -1,32 +1,43 @@
-import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import turboPlugin from "eslint-plugin-turbo";
-import tseslint from "typescript-eslint";
-import onlyWarn from "eslint-plugin-only-warn";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
+import typescript from '@typescript-eslint/parser';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
-/**
- * A shared ESLint configuration for the repository.
- *
- * @type {import("eslint").Linter.Config[]}
- * */
-export const config = [
-  js.configs.recommended,
-  eslintConfigPrettier,
-  ...tseslint.configs.recommended,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// This allows using older plugin configurations with the new ESLint flat config system
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const baseConfig = [
+  // Extend recommended configurations from TypeScript ESLint and Prettier plugins
+  ...compat.extends(
+    'plugin:@typescript-eslint/recommended',
+    'plugin:turbo/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
+  ),
   {
-    plugins: {
-      turbo: turboPlugin,
+    languageOptions: {
+      parser: typescript, // Use TypeScript parser instead of default JavaScript parser
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module', // Treat files as ES modules (allows import/export)
+      },
     },
     rules: {
-      "turbo/no-undeclared-env-vars": "warn",
+      '@typescript-eslint/no-explicit-any': 'error',
+      'turbo/no-undeclared-env-vars': 'warn',
+      '@typescript-eslint/prefer-readonly': 'warn', // For immutable props
     },
-  },
-  {
-    plugins: {
-      onlyWarn,
-    },
-  },
-  {
-    ignores: ["dist/**"],
+    // Has to come last to override other conflicting rules
+    ...eslintConfigPrettier,
   },
 ];
+
+export default baseConfig;

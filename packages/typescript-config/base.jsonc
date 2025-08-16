@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    // Allow JavaScript files alongside TypeScript for gradual migration
+    "allowJs": true,
+
+    // Set base URL for module resolution (relative to this config file)
+    "baseUrl": ".",
+
+    // Generate .d.ts declaration files for type sharing
+    "declaration": true,
+
+    // Generate source maps for declaration files for better debugging
+    "declarationMap": true,
+
+    // Enable ES module interop for CommonJS compatibility
+    "esModuleInterop": true,
+
+    // Enable incremental compilation for faster subsequent builds
+    "incremental": true,
+
+    // Ensure each file is treated as a separate module (required for bundlers)
+    "isolatedModules": true,
+
+    // Preserve JSX for Next.js to handle compilation
+    "jsx": "preserve",
+
+    // Include DOM types for browser APIs and latest ECMAScript features
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    // Use ES modules (Next.js will handle transpilation)
+    "module": "esnext",
+
+    // Use bundler module resolution for modern bundlers like Webpack/Vite
+    "moduleResolution": "bundler",
+
+    // Don't emit files (Next.js handles compilation)
+    "noEmit": true,
+
+    // Require explicit checks for array/object property access
+    "noUncheckedIndexedAccess": true,
+
+    // Allow importing JSON files with type safety
+    "resolveJsonModule": true,
+
+    // Skip type checking of declaration files for faster builds
+    "skipLibCheck": true,
+
+    // Enable all strict type checking options
+    "strict": true,
+
+    // Target latest ECMAScript features (Next.js handles browser compatibility)
+    "target": "ESNext",
+  },
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@ap/utils",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    "./*": "./dist/*/index.js"
+  },
+  "scripts": {
+    "dev": "tsc --preserveWatchOutput",
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --max-warnings 0",
+    "clean": "rm -rf .turbo node_modules dist",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@ap/eslint-config": "0.1.0",
+    "@ap/jest-config": "0.1.0",
+    "@ap/typescript-config": "0.1.0",
+    "@types/node": "^20.19.8",
+    "eslint": "^9.32.0",
+    "jest": "^30.0.5",
+    "typescript": "^5.9.2"
+  }
+}

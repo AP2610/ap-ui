@@ -1,0 +1,19 @@
+{
+  "name": "@ap/jest-config",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./jest.config.ts",
+    "./setup": "./jest.setup.ts"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2"
+  }
+}

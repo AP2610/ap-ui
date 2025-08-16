@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@import '@ap/tailwind-preset/styles';
+
+/* TODO: Test colors via import */
+@theme {
+  /* Fonts */
+  --font-raleway: var(--font-raleway);
+  --font-montserrat: var(--font-montserrat);
+}
+
+@theme inline {
+}
