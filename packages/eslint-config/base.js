@@ -14,14 +14,7 @@ const compat = new FlatCompat({
 
 const baseConfig = [
   // Extend recommended configurations from TypeScript ESLint and Prettier plugins
-  ...compat.extends(
-    'plugin:@typescript-eslint/recommended',
-    'plugin:turbo/recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended',
-  ),
+  ...compat.extends('plugin:@typescript-eslint/recommended', 'plugin:turbo/recommended', 'plugin:prettier/recommended'),
   {
     languageOptions: {
       parser: typescript, // Use TypeScript parser instead of default JavaScript parser

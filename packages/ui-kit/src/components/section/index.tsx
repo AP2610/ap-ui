@@ -1,11 +1,9 @@
-'use client';
-
 import { cn } from '@ap/utils/cn';
 import { motion, MotionProps } from 'motion/react';
 
-type PaddingSizes = 'small' | 'medium' | 'large';
+export type PaddingSizes = 'small' | 'medium' | 'large';
 
-type SectionProps = {
+export type SectionProps = {
   children: React.ReactNode;
   className?: string;
   id?: string;
