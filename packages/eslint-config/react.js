@@ -21,7 +21,7 @@ const reactLibraryConfig = [
       'react/no-array-index-key': 'warn', // Discourages array index as keys
       'react/react-in-jsx-scope': 'off',
 
-      // Accessibility enforcement (from your A11y baseline)
+      // Accessibility enforcement
       'jsx-a11y/anchor-is-valid': 'error',
       'jsx-a11y/click-events-have-key-events': 'error',
       'jsx-a11y/no-static-element-interactions': 'error',
