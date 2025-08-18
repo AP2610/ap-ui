@@ -1,25 +1,58 @@
 {
-  "name": "ui-kit",
+  "name": "@ap/ui-kit",
   "version": "0.1.0",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*/index.mjs",
+      "types": "./dist/*/index.d.ts"
+    },
+    "./styles": "./compiled-styles/styles.css"
+  },
+  "files": [
+    "dist",
+    "compiled-styles"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "build": "tsup && tailwindcss -i src/styles/globals.css src/components/**/*.css -o dist/styles.css",
-    "dev": "concurrently \"tsup --watch\" \"tailwindcss -i src/styles/globals.css src/components/**/*.css -o dist/styles.css --watch\""
+    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./compiled-styles/styles.css",
+    "build:components": "tsup",
+    "build": "npm run clean && npm run build:components &&npm run build:styles",
+    "clean": "rimraf dist compiled-styles",
+    "check-types": "tsc --noEmit",
+    "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./compiled-styles/styles.css --watch",
+    "dev:components": "tsup --watch",
+    "dev": "npm run dev:components && npm run dev:styles",
+    "lint": "eslint src --max-warnings 0",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "format": "prettier --write ."
   },
   "devDependencies": {
-    "@ap/tailwind-preset": "0.1.0",
+    "@ap/eslint-config": "0.1.0",
+    "@ap/jest-config": "0.1.0",
     "@ap/typescript-config": "0.1.0",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/cli": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
+    "fast-glob": "^3.3.3",
     "jest": "^30.0.4",
-    "tailwindcss": "^4",
-    "typescript": "^5.9.2",
+    "motion": "^12.23.6",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^4.1.11",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
+    "motion": "^12.23.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }

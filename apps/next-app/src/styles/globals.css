@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import '@ap/tailwind-preset/styles';
+@import '@ap/ui-kit/styles';
 
 /* TODO: Test colors via import */
 @theme {

@@ -26,6 +26,7 @@ coverage
 out/
 build
 dist
+compiled-styles
 
 
 # Debug
@@ -39,3 +40,4 @@ yarn-error.log*
 .cursor
 .vscode
 ap_ui_kit_technical_specification_living_document.md
+todo.md

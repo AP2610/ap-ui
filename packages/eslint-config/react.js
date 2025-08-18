@@ -1,9 +1,12 @@
 import baseConfig from './base.js';
 
+const { rules: baseRules, ...baseConfigWithoutRules } = baseConfig;
+
 const reactLibraryConfig = [
-  ...baseConfig,
+  ...baseConfigWithoutRules,
   {
     rules: {
+      ...baseRules,
       'react/prop-types': 'off',
       'react/jsx-no-leaked-render': 'error', // Prevents conditional rendering bugs
       'react/jsx-key': 'error', // Ensures proper keys in lists

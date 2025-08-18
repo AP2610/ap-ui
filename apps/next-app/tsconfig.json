@@ -1,5 +1,5 @@
 {
-  "extends": "@ap/typescript-config/next.json",
+  "extends": "@ap/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",

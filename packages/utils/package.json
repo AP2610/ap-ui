@@ -5,6 +5,9 @@
   "exports": {
     "./*": "./dist/*/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "tsc --preserveWatchOutput",
     "build": "tsc",
