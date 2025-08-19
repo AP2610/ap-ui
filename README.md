@@ -1,11 +1,20 @@
-# Turborepo monorepo with Next.js starter template
+# AP UI - WIP
 
-This is a work in progress.
+A React component library of my most frequently used components across projects. 
 
-The goal of this is to get more familiar with Monorepos and specifically, Turborepo. I am also using this to dive deeper into Miicrofrontend architecture. The project leverages a Next.js starter template i created for myself, installable as an npm package.
+## Motivation
 
-Next steps:
+Instead of recreating the same components, or copy pasting them from previous projects, I decided to build a component library that features my most commonly used components. From primitives to fully-loaded components, the goal is to increase my productivity in building things. I'll eventually turn this into an NPM package so that I can simply install it as a dependency for my other projects.
 
-- Create multiple apps to create a microfrontend architecture, leverage Next.js module federation.
-- Install Storbook in UI package.
-- Convert ui package and shared package into compiled packages (with a dist folder).
+## Tech stack
+
+- React 19
+- TailwindCSS
+- Tailwind CLI
+- Motion (Framer Motion)
+- Tsup
+- Jest & RTL
+- Turborepo
+
+### This README will be adjusted through the development process.
+
