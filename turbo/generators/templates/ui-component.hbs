@@ -1,0 +1,28 @@
+import { cn } from '@ap/utils/cn';
+import { type PropsWithChildren } from 'react';
+{{#if hasMotion}}
+import { motion, MotionProps } from 'motion/react';
+{{/if}}
+{{#if stateful}}
+import { useState } from 'react';
+{{/if}}
+
+export interface {{pascalCase title}}Props extends PropsWithChildren {
+  className?: string;
+  ref?: React.RefObject<HTML{{pascalCase htmlElement}}Element>;
+  // Add other props here
+}
+
+/** forwardRef will be deprecated and removed in the near future. Now, ref is available as a prop instead. */
+export const {{pascalCase title}} = ({children, className, ref}: {{pascalCase title}}Props) => {
+  {{#if stateful}}
+  const [state, setState] = useState(0);
+  {{/if}}
+
+  return (
+    <{{htmlElement}} className={cn(className)} ref={ref}>
+      <h1>{{pascalCase title}}</h1>
+      {children}
+    </{{htmlElement}}>
+  );
+};
