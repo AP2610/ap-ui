@@ -18,13 +18,13 @@
     "react": "19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "@ap/utils": "0.1.0",
-    "@ap/ui-kit": "0.1.0"
+    "@ap/utils": "*",
+    "@ap/ui-kit": "*"
   },
   "devDependencies": {
-    "@ap/eslint-config": "0.1.0",
-    "@ap/jest-config": "0.1.0",
-    "@ap/typescript-config": "0.1.0",
+    "@ap/eslint-config": "*",
+    "@ap/jest-config": "*",
+    "@ap/typescript-config": "*",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

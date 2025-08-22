@@ -1,36 +1,34 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
-import typescript from '@typescript-eslint/parser';
+import js from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import turboPlugin from 'eslint-plugin-turbo';
+import tseslint from 'typescript-eslint';
+import onlyWarn from 'eslint-plugin-only-warn';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// This allows using older plugin configurations with the new ESLint flat config system
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+/**
+ * A shared ESLint configuration for the repository.
+ *
+ * @type {import("eslint").Linter.Config}
+ * */
 const baseConfig = [
-  // Extend recommended configurations from TypeScript ESLint and Prettier plugins
-  ...compat.extends('plugin:@typescript-eslint/recommended', 'plugin:turbo/recommended', 'plugin:prettier/recommended'),
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    languageOptions: {
-      parser: typescript, // Use TypeScript parser instead of default JavaScript parser
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module', // Treat files as ES modules (allows import/export)
-      },
+    plugins: {
+      turbo: turboPlugin,
     },
     rules: {
-      '@typescript-eslint/no-explicit-any': 'error',
       'turbo/no-undeclared-env-vars': 'warn',
-      '@typescript-eslint/prefer-readonly': 'warn', // For immutable props
     },
-    // Has to come last to override other conflicting rules
-    ...eslintConfigPrettier,
   },
+  {
+    plugins: {
+      onlyWarn,
+    },
+  },
+  {
+    ignores: ['dist/**'],
+  },
+  eslintConfigPrettier,
 ];
 
 export default baseConfig;

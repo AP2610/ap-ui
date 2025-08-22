@@ -33,10 +33,10 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@ap/eslint-config": "0.1.0",
-    "@ap/jest-config": "0.1.0",
-    "@ap/typescript-config": "0.1.0",
-    "@ap/utils": "0.1.0",
+    "@ap/eslint-config": "*",
+    "@ap/jest-config": "*",
+    "@ap/typescript-config": "*",
+    "@ap/utils": "*",
     "@tailwindcss/cli": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^19",

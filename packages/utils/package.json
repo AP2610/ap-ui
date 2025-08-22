@@ -22,9 +22,9 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@ap/eslint-config": "0.1.0",
-    "@ap/jest-config": "0.1.0",
-    "@ap/typescript-config": "0.1.0",
+    "@ap/eslint-config": "*",
+    "@ap/jest-config": "*",
+    "@ap/typescript-config": "*",
     "@types/node": "^20.19.8",
     "eslint": "^9.32.0",
     "jest": "^30.0.5",

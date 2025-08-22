@@ -16,7 +16,7 @@ const twBreakpoints: Record<Breakpoints, string> = {
  * // Returns true when viewport width >= 768px (md)
  * const isMediumScreenOrLarger = useMediaQuery('md');
  */
-export const useMediaQuery = (mediaQuery: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | string) => {
+export const useMediaQuery = (mediaQuery: Breakpoints) => {
   const [matches, setMatches] = useState<boolean>(false);
 
   let query;
