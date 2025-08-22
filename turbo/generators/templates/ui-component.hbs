@@ -1,28 +1,59 @@
 import { cn } from '@ap/utils/cn';
-import { type PropsWithChildren } from 'react';
 {{#if hasMotion}}
-import { motion, MotionProps } from 'motion/react';
+import { motion, type MotionProps } from 'motion/react';
 {{/if}}
 {{#if stateful}}
 import { useState } from 'react';
 {{/if}}
+{{#if hasVariant}}
+import { tv } from 'tailwind-variants';
+{{/if}}
+{{#if hasChildren}}
+import { type ComponentPropsWithChildren } from '../../types/component-prop-types';
+{{else}}
+import { type ComponentPropsWithoutChildren } from '../../types/component-prop-types';
+{{/if}}
 
-export interface {{pascalCase title}}Props extends PropsWithChildren {
-  className?: string;
-  ref?: React.RefObject<HTML{{pascalCase htmlElement}}Element>;
+{{#if hasVariant}}
+const {{componentName}}Variants = tv({
+  base: '',
+  variants: {
+    variant: {
+      default: {}
+    },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+{{/if}}
+
+type {{pascalCase componentName}}PropsType = {
+  {{#if hasMotion}}
+  motionProps?: Omit<MotionProps, 'animate' | 'initial' | 'exit'>;
+  animate?: boolean;
+  {{/if}}
   // Add other props here
 }
 
-/** forwardRef will be deprecated and removed in the near future. Now, ref is available as a prop instead. */
-export const {{pascalCase title}} = ({children, className, ref}: {{pascalCase title}}Props) => {
+export interface {{pascalCase componentName}}Props extends {{getComponentInterface hasChildren hasVariant htmlElement componentName}} {}
+
+export const {{pascalCase componentName}} = ({{getComponentProps hasChildren hasVariant hasMotion}}: {{pascalCase componentName}}Props) => {
   {{#if stateful}}
   const [state, setState] = useState(0);
   {{/if}}
 
   return (
-    <{{htmlElement}} className={cn(className)} ref={ref}>
-      <h1>{{pascalCase title}}</h1>
+    <{{htmlElement}} className={cn({{componentName}}Variants({variant: variant, size: size}), className)} ref={ref} {...props}>
+      {{#if hasChildren}}
       {children}
+      {{/if}}
     </{{htmlElement}}>
   );
 };

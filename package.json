@@ -17,6 +17,7 @@
     "dev:playground": "turbo run dev --filter=playground",
     "dev:ui-kit": "turbo run dev --filter=@ap/ui-kit",
     "format": "turbo run format",
+    "gen:component": "turbo gen component",
     "test": "turbo run test --filter=@ap/ui-kit --filter=@ap/utils --filter=playground",
     "test:watch": "turbo run test:watch --filter=@ap/ui-kit --filter=@ap/utils --filter=playground",
     "test:playground": "turbo run test --filter=playground",
