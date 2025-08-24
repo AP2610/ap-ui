@@ -1,20 +1,17 @@
 import { cn } from '@ap/utils/cn';
-{{#if hasMotion}}
-import { motion, type MotionProps } from 'motion/react';
-{{/if}}
 {{#if stateful}}
 import { useState } from 'react';
 {{/if}}
 {{#if hasVariant}}
-import { tv } from 'tailwind-variants';
+import { tv, type VariantProps } from 'tailwind-variants';
 {{/if}}
 {{#if hasChildren}}
 import { type ComponentPropsWithChildren } from '../../types/component-prop-types';
 {{else}}
 import { type ComponentPropsWithoutChildren } from '../../types/component-prop-types';
 {{/if}}
-
 {{#if hasVariant}}
+
 const {{componentName}}Variants = tv({
   base: '',
   variants: {
@@ -32,27 +29,29 @@ const {{componentName}}Variants = tv({
     variant: 'default',
   },
 });
-{{/if}}
 
+{{/if}}
+{{#if hasVariant}}
+type {{pascalCase componentName}}Variants = VariantProps<typeof {{componentName}}Variants>;
+
+{{/if}}
 type {{pascalCase componentName}}PropsType = {
-  {{#if hasMotion}}
-  motionProps?: Omit<MotionProps, 'animate' | 'initial' | 'exit'>;
-  animate?: boolean;
-  {{/if}}
   // Add other props here
 }
 
-export interface {{pascalCase componentName}}Props extends {{getComponentInterface hasChildren hasVariant htmlElement componentName}} {}
+export type {{pascalCase componentName}}Props = {{{getComponentType hasChildren hasVariant htmlElement componentName}}};
 
-export const {{pascalCase componentName}} = ({{getComponentProps hasChildren hasVariant hasMotion}}: {{pascalCase componentName}}Props) => {
+export const {{pascalCase componentName}} = ({{getComponentProps hasChildren hasVariant}}: {{pascalCase componentName}}Props) => {
   {{#if stateful}}
   const [state, setState] = useState(0);
-  {{/if}}
 
+  {{/if}}
   return (
-    <{{htmlElement}} className={cn({{componentName}}Variants({variant: variant, size: size}), className)} ref={ref} {...props}>
+    <{{htmlElement}} className={{getClassName hasVariant hasSize componentName}} ref={ref} {...props}>
       {{#if hasChildren}}
       {children}
+      {{else}}
+      {{{componentName}}}
       {{/if}}
     </{{htmlElement}}>
   );

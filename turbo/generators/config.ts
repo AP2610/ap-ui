@@ -1,12 +1,19 @@
 import { PlopTypes } from '@turbo/gen';
+import { capitalize } from '../../packages/utils/src/capitalize';
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  plop.setHelper('getComponentProps', (hasChildren: boolean, hasVariant: boolean, hasMotion: boolean) => {
-    const props = ['className', 'ref'];
+  plop.setHelper('getClassName', (hasVariant: boolean, hasSize: boolean, componentName: string) => {
+    const className = ['className'];
 
-    if (hasMotion) {
-      props.push('motionProps', 'animate');
+    if (hasVariant) {
+      className.push(componentName + 'Variants({variant: variant, size: size})');
     }
+
+    return `{cn(${className.join(', ')})}`;
+  });
+
+  plop.setHelper('getComponentProps', (hasChildren: boolean, hasVariant: boolean) => {
+    const props = ['className', 'ref'];
 
     if (hasVariant) {
       props.push('variant', 'size');
@@ -21,23 +28,22 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     return `{${props.join(', ')}}`;
   });
 
-  plop.setHelper(
-    'getComponentInterface',
-    (hasChildren: boolean, hasVariant: boolean, htmlElement: string, componentName: string) => {
-      const elementType = plop.getHelper('getRefType')(htmlElement);
+  plop.setHelper('getComponentType', (hasChildren: boolean, hasVariant: boolean, htmlElement: string, componentName: string) => {
+    const elementType = plop.getHelper('getRefType')(htmlElement);
+    const componentPropsType = capitalize(componentName) + 'PropsType';
+    const componentVariants = capitalize(componentName) + 'Variants';
 
-      if (hasChildren && hasVariant) {
-        return `ComponentPropsWithChildren<${componentName}PropsType, ${elementType}, ${componentName}Variants>`;
-      }
-      if (hasChildren) {
-        return `ComponentPropsWithChildren<${componentName}PropsType, ${elementType}>`;
-      }
-      if (hasVariant) {
-        return `ComponentPropsWithoutChildren<${elementType}, ${componentName}Variants>`;
-      }
-      return `ComponentPropsWithoutChildren<${elementType}>`;
-    },
-  );
+    if (hasChildren && hasVariant) {
+      return `ComponentPropsWithChildren<${componentPropsType}, ${elementType}> & ${componentVariants}`;
+    }
+    if (hasChildren) {
+      return `ComponentPropsWithChildren<${componentPropsType}, ${elementType}>`;
+    }
+    if (hasVariant) {
+      return `ComponentPropsWithoutChildren<${componentPropsType}, ${elementType}> & ${componentVariants}`;
+    }
+    return `ComponentPropsWithoutChildren<${componentPropsType}, ${elementType}>`;
+  });
 
   plop.setHelper('getRefType', (htmlElement: string) => {
     const refTypes: Record<string, string> = {
@@ -108,11 +114,6 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: 'confirm',
         name: 'stateful',
         message: 'Should the component be stateful?',
-      },
-      {
-        type: 'confirm',
-        name: 'hasMotion',
-        message: 'Should the component use motion?',
       },
       {
         type: 'confirm',
