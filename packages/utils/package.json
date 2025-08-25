@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "exports": {
-    "./*": "./dist/*/index.js"
+    "./*": {
+      "import": "./dist/*/index.mjs",
+      "types": "./dist/*/index.d.mts"
+    },
+    "./*/*": {
+      "import": "./dist/*/*/index.mjs",
+      "types": "./dist/*/*/index.d.mts"
+    }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "tsc --preserveWatchOutput",
-    "build": "tsc",
+    "dev": "tsup --watch",
+    "build": "tsup src/**/*.ts src/**/**/*.ts --format esm --dts --clean",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint . --max-warnings 0",
@@ -28,6 +35,7 @@
     "@types/node": "^20.19.8",
     "eslint": "^9.32.0",
     "jest": "^30.0.5",
+    "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   }
 }

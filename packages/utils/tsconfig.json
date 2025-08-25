@@ -1,6 +1,7 @@
 {
   "extends": "@ap/typescript-config/base.json",
   "compilerOptions": {
+    "incremental": false,
     "noEmit": false,
     "outDir": "dist",
     "rootDir": "src",
