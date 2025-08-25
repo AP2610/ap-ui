@@ -21,7 +21,7 @@ export default defineConfig((options) => ({
   clean: true,
   dts: true,
   entry: entries,
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'motion'],
   noExternal: ['@ap/utils'],
   format: ['esm'],
   minify: !options.watch,

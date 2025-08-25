@@ -39,11 +39,14 @@ yarn-error.log*
 *.pem
 .cursor
 .vscode
+
+# Documentation
 ap_ui_kit_technical_specification_living_document.md
 ap_ui_kit_are.md
 ap_ui_kit_ts_patterns_utilities.md
 ap_ui_kit_component_checklist.md
 todo.md
+docs.md
 
 # Storybook
 *storybook.log
